@@ -14,7 +14,17 @@ using static System.Buffers.Binary.BinaryPrimitives;
 
 namespace PhotoSauce.MagicScaler;
 
-internal enum ColorProfileType { Unknown, Curve, Matrix, Table }
+public enum ColorProfileType { Unknown, Curve, Matrix, Table }
+
+public enum ProfileColorSpace
+{
+	Other,
+	Rgb,
+	Grey,
+	Cmyk,
+	Xyz,
+	Lab
+}
 
 //http://www.color.org/specification/ICC1v43_2010-12.pdf
 internal class ColorProfile
@@ -75,18 +85,8 @@ internal class ColorProfile
 		public const uint curv = 'c' << 24 | 'u' << 16 | 'r' << 8 | 'v';
 		public const uint para = 'p' << 24 | 'a' << 16 | 'r' << 8 | 'a';
 	}
-
+	
 	private readonly record struct TagEntry(uint Tag, Range Range);
-
-	internal enum ProfileColorSpace
-	{
-		Other,
-		Rgb,
-		Grey,
-		Cmyk,
-		Xyz,
-		Lab
-	}
 
 	private static readonly ColorProfile invalidProfile = new();
 
