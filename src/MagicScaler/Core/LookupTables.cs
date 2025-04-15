@@ -23,7 +23,7 @@ internal static class LookupTables
 		float[] tbl = new float[InverseGammaLength];
 
 		for (int i = 0; i < tbl.Length; i++)
-			tbl[i] = (float)((double)i / byte.MaxValue);
+			tbl[i] = (float)((double)i / InverseGammaScale);
 
 		Fixup(tbl, InverseGammaScale);
 
